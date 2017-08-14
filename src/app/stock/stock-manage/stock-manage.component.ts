@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockManageComponent implements OnInit {
   private stocks: Array<Stock>;
-  constructor() { }
+  constructor(public router: Router) { }
   ngOnInit() {
     this.stocks = [
       new Stock(1, '第一只股票', 1.99, 3.5, '这是第一只股票,是我在学习慕课网Angular入门实战时创建的', ['IT', '互联网']),
@@ -19,6 +20,12 @@ export class StockManageComponent implements OnInit {
       new Stock(7, '第七只股票', 7.99, 2.5, '这是第七只股票,是我在学习慕课网Angular入门实战时创建的', ['互联网']),
       new Stock(8, '第八只股票', 8.99, 3.5, '这是第八只股票,是我在学习慕课网Angular入门实战时创建的', ['IT']),
     ];
+  }
+  create() {
+    this.router.navigateByUrl('/stock/0');
+  }
+  update(stock: Stock) {
+    this.router.navigateByUrl('/stock/' + stock.id);
   }
 }
 export class Stock {
